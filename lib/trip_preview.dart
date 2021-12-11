@@ -1,23 +1,30 @@
 //import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:intento_de_flutter/dataclasses/trip_data.dart';
+import 'package:intento_de_flutter/trip_detail.dart';
 
 
-
-class Trip extends StatelessWidget{
-  final String authorUser = "Ferran";  //var??
+class TripPreview extends StatelessWidget{
+  /*final String authorUser = "Ferran";  //var??
   String title = "Milano skyscraper tour";
   String place = "Milano, Italy";
   String description = "this is a description of my trip this is a description of my trip this is a description of my trip this is a description of my trip this is a description of my trip this is a description of my trip this is a description of my trip this is a description of my trip this is a description of my trip";
-  late Image previewPic;
+  late Image previewPic;*/
+  TripData tripData = TripData();
+
+  TripPreview({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0),),
+    return Container(
+      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+      child:
+      //const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0),),
       InkWell( //so its clickable and it shows the ripple effect
-        onTap: (){
-          print("trip clicked");
+        onTap: () {
+          //print("trip clicked");
+          Navigator.pushNamed(context, TripDetail.routeName, arguments: tripData);
         },
         child:
         Ink(  //like Container but the ripple effect shows
@@ -27,26 +34,27 @@ class Trip extends StatelessWidget{
           child: Column(  //main
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(authorUser, textAlign: TextAlign.left, style: const TextStyle(fontSize: 18),),
+              Text(tripData.authorUser, textAlign: TextAlign.left, style: const TextStyle(fontSize: 18),),
               Row(        //title, place and pic
                 children: [
                 Column(   //title and place
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children:[
-                    Text(title, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.normal),),
+                    Text(tripData.title, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.normal),),
                     Row(children:[  //place, with padding
                       const Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0),),
-                      Text(place, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)])
+                      Text(tripData.place, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)])
                     ,
                 ]),
-                /*Image(image: previewPic)*/],
+                /*Image(image: tripData.previewPic)*/],
               ),
-              Text(description, style: const TextStyle(fontSize: 15),),
+              Text(tripData.description, style: const TextStyle(fontSize: 15),),
             ],
           ),
           ),
+        //borderRadius: BorderRadius.all(Radious.),
       ),
-      const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 10),),
-    ],);
+      //const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 10),),
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intento_de_flutter/trip_detail.dart';
 
-import 'trip.dart';
+import 'trip_preview.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,6 +28,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.cyan,
       ),
       home: const MyHomePage(title: 'Timeline Page'),
+      initialRoute: '/',
+      routes: {
+        //'/': (context) => const MyHomePage(title: 'Timeline Page'), //redundant bc we have specified home
+        TripDetail.routeName: (context) => const TripDetail(), //esto registra la ruta de la pantalla TripDetail
+    },
     );
   }
 }
@@ -50,18 +56,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  //podemos checkear el codigo original para ver como se editava el estado
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    List<Trip> trips = [Trip(), Trip(), Trip(), Trip(), Trip()];  //posts to show in the timeline
+    List<TripPreview> trips = [TripPreview(), TripPreview(), TripPreview(), TripPreview(), TripPreview()];  //posts to show in the timeline
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -87,21 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       //he quitado el center
       body: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //mainAxisSize: MainAxisSize.max,
+          //comments borrados
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
@@ -112,22 +93,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 )
             )
-
-            /*Expanded(
-                child: ListView.builder(itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                      contentPadding: const EdgeInsets.all(10.0),
-                  title: Text("this is a text"),
-                  trailing: Image.network(
-                  _movies[index]['Poster'],
-                  fit: BoxFit.cover,
-                  height: 100.0,
-                  width: 100.0,
-                  ));
-                },
-                )),*/
-
-
           ],
         ), // This trailing comma makes auto-formatting nicer for build methods.
     );
