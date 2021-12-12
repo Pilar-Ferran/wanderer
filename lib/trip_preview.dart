@@ -46,7 +46,10 @@ class TripPreview extends StatelessWidget{
                       Text(tripData.place, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)])
                     ,
                 ]),
-                /*Image(image: tripData.previewPic)*/],
+                //TODO conseguir que la imagen se separe a lo centrada
+                Center(child: tripData.previewPic, /*alignment: Alignment.center,*/)  //Container?
+                ],
+                crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.center,
               ),
               Text(tripData.description, style: const TextStyle(fontSize: 15),),
             ],
